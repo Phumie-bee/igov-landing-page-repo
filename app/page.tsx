@@ -98,7 +98,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 w-full px-6 py-20">
+        <div className="relative z-10 w-full px-6 py-20 pb-36">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="mb-6 inline-block">
@@ -140,10 +140,137 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Integrated Tools Showcase */}
+        <div className="absolute bottom-20 left-0 right-0 z-10 overflow-hidden">
+          <div className="text-center mb-6 px-6">
+            <span className="text-white/90 text-sm font-semibold uppercase tracking-wider">
+              All-in-One Platform — 19+ Integrated Tools
+            </span>
+          </div>
+
+          {/* Sliding Row 1 */}
+          <div className="relative mb-4">
+            <div className="flex gap-4 animate-[marquee-left_40s_linear_infinite] pl-4">
+              {[
+                ...integratedTools.slice(0, 10),
+                ...integratedTools.slice(0, 10),
+              ].map((tool, index) => {
+                const Icon = tool.icon;
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 px-4 py-3 bg-white/95 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg min-w-[200px] shrink-0"
+                  >
+                    <div className="w-8 h-8 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
+                      <Icon className="w-4 h-4 text-[#079f6f]" />
+                    </div>
+                    <span className="text-xs font-semibold text-zinc-800 whitespace-nowrap">
+                      {tool.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Sliding Row 2 */}
+          <div className="relative">
+            <div className="flex gap-4 animate-[marquee-right_40s_linear_infinite] pl-12">
+              {[...integratedTools.slice(10), ...integratedTools.slice(10)].map(
+                (tool, index) => {
+                  const Icon = tool.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 px-4 py-3 bg-white/95 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg min-w-[200px] shrink-0"
+                    >
+                      <div className="w-8 h-8 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon className="w-4 h-4 text-[#079f6f]" />
+                      </div>
+                      <span className="text-xs font-semibold text-zinc-800 whitespace-nowrap">
+                        {tool.name}
+                      </span>
+                    </div>
+                  );
+                },
+              )}
+            </div>
+          </div>
+        </div>
+
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
             <div className="w-1 h-2 bg-white/50 rounded-full animate-bounce" />
+          </div>
+        </div>
+      </section>
+
+      {/* Integrated Tools Section */}
+      <section
+        id="tools"
+        className="py-20 px-20 md:py-28 bg-zinc-50 overflow-hidden"
+      >
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-16">
+            <span className="text-[#079f6f] font-semibold text-sm uppercase tracking-wider">
+              Platform Features
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
+              Everything You Need in One Platform
+            </h2>
+            <p className="text-lg text-zinc-600 max-w-3xl mx-auto">
+              Comprehensive tools designed for seamless government operations.
+            </p>
+          </div>
+        </div>
+
+        {/* Sliding Row 1 - scrolls left */}
+        <div className="relative mb-6 -mx-6">
+          <div className="flex gap-6 animate-[marquee-left_40s_linear_infinite] pl-6">
+            {[
+              ...integratedTools.slice(0, 10),
+              ...integratedTools.slice(0, 10),
+            ].map((tool, index) => {
+              const Icon = tool.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-[240px] shrink-0 hover:shadow-md transition-shadow"
+                >
+                  <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-[#079f6f]" />
+                  </div>
+                  <span className="text-sm font-semibold text-zinc-800 whitespace-nowrap">
+                    {tool.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sliding Row 2 - scrolls right, offset */}
+        <div className="relative -mx-6">
+          <div className="flex gap-6 animate-[marquee-right_40s_linear_infinite] pl-20">
+            {[...integratedTools.slice(10), ...integratedTools.slice(10)].map(
+              (tool, index) => {
+                const Icon = tool.icon;
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-[240px] shrink-0 hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#079f6f]" />
+                    </div>
+                    <span className="text-sm font-semibold text-zinc-800 whitespace-nowrap">
+                      {tool.name}
+                    </span>
+                  </div>
+                );
+              },
+            )}
           </div>
         </div>
       </section>
@@ -293,40 +420,6 @@ export default function Home() {
                 );
               })}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Integrated Tools Section */}
-      <section id="tools" className="py-20 md:py-28 px-6 bg-white">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <span className="text-[#079f6f] font-semibold text-sm uppercase tracking-wider">
-              Platform Features
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
-              Everything You Need in One Platform
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-3xl mx-auto">
-              Comprehensive tools designed for seamless government operations.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {integratedTools.map((tool, index) => {
-              const Icon = tool.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 p-4 bg-zinc-50 rounded-lg hover:bg-[#079f6f]/5 hover:border-[#079f6f] border border-transparent transition-all group cursor-pointer"
-                >
-                  <Icon className="w-5 h-5 text-[#079f6f] flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-semibold text-zinc-700 group-hover:text-[#079f6f] transition-colors">
-                    {tool.name}
-                  </span>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
