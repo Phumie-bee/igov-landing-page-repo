@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Background Image */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-[50vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -98,23 +98,22 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 w-full px-6 py-20 pb-36">
+        <div className="relative z-10 w-full px-6 py-14">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <div className="mb-6 inline-block">
+              <div className="mb-4 inline-block">
                 <span className="bg-[#079f6f] text-white px-4 py-2 text-sm font-semibold uppercase tracking-wider">
                   Advanced Groupware Platform
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                Governance that{" "}
-                <span className="text-[#079f6f]">actually works.</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                Smarter governance.{" "}
+                <span className="text-[#079f6f]">Real results.</span>
               </h1>
-              <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mb-8">
-                Advanced groupware designed for the modern government. Optimized
-                collaboration, seamless communication, and business
-                intelligence—built for public entities that want to maximize
-                growth and reduce costs.
+              <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mb-6">
+                The all-in-one groupware powering modern
+                government—collaboration, communication, and intelligence in a
+                single platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -139,81 +138,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Integrated Tools Showcase */}
-        <div className="absolute bottom-20 left-0 right-0 z-10 overflow-hidden">
-          <div className="text-center mb-6 px-6">
-            <span className="text-white/90 text-sm font-semibold uppercase tracking-wider">
-              All-in-One Platform — 19+ Integrated Tools
-            </span>
-          </div>
-
-          {/* Sliding Row 1 */}
-          <div className="relative mb-4">
-            <div className="flex gap-4 animate-[marquee-left_40s_linear_infinite] pl-4">
-              {[
-                ...integratedTools.slice(0, 10),
-                ...integratedTools.slice(0, 10),
-              ].map((tool, index) => {
-                const Icon = tool.icon;
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 px-4 py-3 bg-white/95 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg min-w-[200px] shrink-0"
-                  >
-                    <div className="w-8 h-8 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-[#079f6f]" />
-                    </div>
-                    <span className="text-xs font-semibold text-zinc-800 whitespace-nowrap">
-                      {tool.name}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Sliding Row 2 */}
-          <div className="relative">
-            <div className="flex gap-4 animate-[marquee-right_40s_linear_infinite] pl-12">
-              {[...integratedTools.slice(10), ...integratedTools.slice(10)].map(
-                (tool, index) => {
-                  const Icon = tool.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 px-4 py-3 bg-white/95 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg min-w-[200px] shrink-0"
-                    >
-                      <div className="w-8 h-8 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <Icon className="w-4 h-4 text-[#079f6f]" />
-                      </div>
-                      <span className="text-xs font-semibold text-zinc-800 whitespace-nowrap">
-                        {tool.name}
-                      </span>
-                    </div>
-                  );
-                },
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-white/50 rounded-full animate-bounce" />
-          </div>
-        </div>
       </section>
 
       {/* Integrated Tools Section */}
       <section
         id="tools"
-        className="py-20 px-20 md:py-28 bg-zinc-50 overflow-hidden"
+        className="pt-10 pb-16 px-20 md:pt-14 md:pb-20 bg-zinc-50 overflow-hidden"
       >
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <span className="text-[#079f6f] font-semibold text-sm uppercase tracking-wider">
+          <div className="text-center mb-10">
+            <span className="bg-[#079f6f]/10 text-[#056b4a] font-semibold text-sm uppercase tracking-wider px-3 py-1 rounded-full">
               Platform Features
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
@@ -236,7 +170,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-[240px] shrink-0 hover:shadow-md transition-shadow"
+                  className="flex items-center justify-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-[240px] shrink-0 hover:shadow-md transition-shadow"
                 >
                   <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-[#079f6f]" />
@@ -279,7 +213,7 @@ export default function Home() {
       <section id="features" className="py-20 md:py-28 px-6 bg-white">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <span className="text-[#079f6f] font-semibold text-sm uppercase tracking-wider">
+            <span className="bg-[#079f6f]/10 text-[#056b4a] px-3 py-1 rounded-full font-semibold text-sm uppercase tracking-wider">
               Our Services
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
@@ -330,7 +264,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div>
-              <span className="text-[#079f6f] font-semibold text-sm uppercase tracking-wider">
+              <span className="bg-[#079f6f]/10 text-[#056b4a] px-3 py-1 rounded-full  font-semibold text-sm uppercase tracking-wider">
                 About iGOV
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-6">
