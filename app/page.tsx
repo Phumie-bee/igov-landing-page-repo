@@ -150,10 +150,8 @@ export default function Home() {
             <span className="bg-[#079f6f]/10 text-[#056b4a] font-semibold text-sm uppercase tracking-wider px-3 py-1 rounded-full">
               Platform Features
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
-              Everything You Need in One Platform
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-3xl mx-auto">
+
+            <p className="text-lg text-zinc-600 max-w-3xl mx-auto my-4">
               Comprehensive tools designed for seamless government operations.
             </p>
           </div>
@@ -329,18 +327,54 @@ export default function Home() {
             {/* Right Content - Values Grid */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Shield, label: "Security First", color: "bg-blue-50" },
-                { icon: Zap, label: "Efficiency", color: "bg-yellow-50" },
-                { icon: Users, label: "Collaboration", color: "bg-purple-50" },
-                { icon: TrendingUp, label: "Growth", color: "bg-green-50" },
-                { icon: Lightbulb, label: "Innovation", color: "bg-orange-50" },
+                {
+                  icon: Shield,
+                  label: "Security First",
+                  color: "bg-blue-50",
+                  iconColor: "text-blue-600",
+                },
+                {
+                  icon: Zap,
+                  label: "Efficiency",
+                  color: "bg-yellow-50",
+                  iconColor: "text-yellow-600",
+                },
+                {
+                  icon: Users,
+                  label: "Collaboration",
+                  color: "bg-purple-50",
+                  iconColor: "text-purple-600",
+                },
+                {
+                  icon: TrendingUp,
+                  label: "Growth",
+                  color: "bg-green-50",
+                  iconColor: "text-green-600",
+                },
+                {
+                  icon: Lightbulb,
+                  label: "Innovation",
+                  color: "bg-orange-50",
+                  iconColor: "text-orange-600",
+                },
                 {
                   icon: Heart,
                   label: "Service Excellence",
                   color: "bg-red-50",
+                  iconColor: "text-red-600",
                 },
-                { icon: Globe, label: "Connectivity", color: "bg-cyan-50" },
-                { icon: Target, label: "Results-Driven", color: "bg-pink-50" },
+                {
+                  icon: Globe,
+                  label: "Connectivity",
+                  color: "bg-cyan-50",
+                  iconColor: "text-cyan-600",
+                },
+                {
+                  icon: Target,
+                  label: "Results-Driven",
+                  color: "bg-pink-50",
+                  iconColor: "text-pink-600",
+                },
               ].map((value, index) => {
                 const Icon = value.icon;
                 return (
@@ -348,7 +382,9 @@ export default function Home() {
                     key={index}
                     className={`${value.color} p-6 rounded-xl hover:shadow-lg transition-all group cursor-pointer`}
                   >
-                    <Icon className="w-8 h-8 text-[#079f6f] mb-3 group-hover:scale-110 transition-transform" />
+                    <Icon
+                      className={`w-8 h-8 ${value.iconColor} mb-3 group-hover:scale-110 transition-transform`}
+                    />
                     <h4 className="font-bold text-zinc-900">{value.label}</h4>
                   </div>
                 );
