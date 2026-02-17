@@ -152,7 +152,8 @@ export default function Home() {
             </span>
 
             <p className="text-lg text-zinc-600 max-w-3xl mx-auto my-4">
-              Comprehensive tools designed for seamless government operations.
+              Comprehensive tools designed for seamless public sector
+              operations.
             </p>
           </div>
         </div>
@@ -215,7 +216,7 @@ export default function Home() {
               Our Services
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mt-4 mb-4">
-              Built for What Government Needs
+              Built for What Public Sector Needs
             </h2>
             <p className="text-lg text-zinc-600 max-w-3xl mx-auto">
               From knowledge sharing to economic intelligence, iGOV covers the
@@ -408,7 +409,7 @@ export default function Home() {
           </h2>
           <p className="text-xl text-zinc-300 mb-10 max-w-2xl mx-auto">
             With your vision and our platform, we can reshape the future of
-            public sector governance.
+            public service.
           </p>
           <Button
             size="lg"
