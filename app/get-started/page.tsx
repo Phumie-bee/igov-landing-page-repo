@@ -35,7 +35,7 @@ export default function GetStartedPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-6 pt-20">
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-6">
         <Card className="max-w-lg w-full border-zinc-200 shadow-xl">
           <CardContent className="p-10 text-center">
             <div className="w-16 h-16 bg-[#079f6f]/10 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -64,7 +64,7 @@ export default function GetStartedPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 pt-20">
+    <div className="min-h-screen bg-zinc-50">
       <div className="mx-auto max-w-3xl px-6 py-16 md:py-24">
         {/* Header */}
         <div className="text-center mb-12">

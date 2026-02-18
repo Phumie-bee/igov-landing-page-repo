@@ -42,7 +42,7 @@ export default function HeroSection() {
                 className="bg-[#079f6f] text-white hover:bg-[#028751] text-base font-semibold px-8 h-14 group"
                 asChild
               >
-                <Link href="https://app.igov.com/portal">
+                <Link href="/request-demo">
                   Request a Demo
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>

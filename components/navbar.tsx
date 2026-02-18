@@ -58,7 +58,7 @@ export default function Navbar() {
             className="text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 font-medium"
             asChild
           >
-            <Link href="/sign-in">Sign In</Link>
+            <Link href="https://staging.cnxigov.com/sign-in">Sign In</Link>
           </Button>
           <Button
             size="sm"
