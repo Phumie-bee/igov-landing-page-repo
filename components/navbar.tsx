@@ -32,7 +32,7 @@ export default function Navbar() {
             />
           </div>
           <span className="text-xl font-bold text-zinc-900 tracking-tight hidden sm:inline-block group-hover:text-[#079f6f] transition-colors">
-            CNXi<span className="text-[#079f6f]">Gov</span>
+            iGov
           </span>
         </Link>
 
@@ -65,7 +65,7 @@ export default function Navbar() {
             className="bg-[#079f6f] text-white hover:bg-[#028751] font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
             asChild
           >
-            <Link href="/sign-up">Get Started</Link>
+            <Link href="/get-started">Get Started</Link>
           </Button>
         </div>
 
@@ -116,7 +116,7 @@ export default function Navbar() {
                 className="w-full bg-[#079f6f] text-white hover:bg-[#028751] font-medium shadow-md"
                 asChild
               >
-                <Link href="https://app.cnxigov.com/portal">Get Started</Link>
+                <Link href="/get-started">Get Started</Link>
               </Button>
             </div>
           </div>
