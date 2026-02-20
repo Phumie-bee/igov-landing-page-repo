@@ -138,11 +138,15 @@ export default function MissionVisionSection() {
               return (
                 <div
                   key={index}
-                  className={`${value.color} p-6 rounded-xl hover:shadow-lg transition-all group cursor-pointer`}
+                  className={`bg-white p-6 rounded-xl hover:shadow-lg transition-all group cursor-pointer`}
                 >
-                  <Icon
-                    className={`w-8 h-8 ${value.iconColor} mb-3 group-hover:scale-110 transition-transform`}
-                  />
+                  <div
+                    className={`${value.color} w-12 h-12 flex items-center justify-center rounded-full mb-3`}
+                  >
+                    <Icon
+                      className={`w-8 h-8 ${value.iconColor} group-hover:scale-110 transition-transform`}
+                    />
+                  </div>
                   <h4 className="font-bold text-zinc-900">{value.label}</h4>
                 </div>
               );
