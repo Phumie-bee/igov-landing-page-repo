@@ -6,7 +6,7 @@ import iGov_heroImage2 from "../public/Federal_Secretariat.png";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[50vh] flex items-center py-10 sm:py-12 lg:py-16">
+    <section className="relative min-h-[50vh] flex items-center pt-20 pb-6 sm:pt-26 sm:pb-10 lg:pt-28 lg:pb-8">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image

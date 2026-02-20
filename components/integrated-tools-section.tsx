@@ -86,7 +86,7 @@ function ScrollableRow({ row }: { row: typeof integratedTools }) {
           return (
             <div
               key={index}
-              className="flex items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-xl border border-zinc-200 shadow-sm min-w-40 sm:min-w-47.5 shrink-0 snap-start hover:shadow-md transition-shadow"
+              className="flex items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-full border border-zinc-200 shadow-sm min-w-40 sm:min-w-47.5 shrink-0 snap-start hover:shadow-md transition-shadow"
             >
               <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
                 <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#079f6f]" />
@@ -151,7 +151,7 @@ export default function IntegratedToolsSection() {
               return (
                 <div
                   key={index}
-                  className="flex items-center justify-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
+                  className="flex items-center justify-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
                 >
                   <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-[#079f6f]" />
@@ -167,14 +167,14 @@ export default function IntegratedToolsSection() {
 
         {/* Sliding Row 2 - scrolls right, offset */}
         <div className="relative -mx-6">
-          <div className="flex gap-6 animate-[marquee-right_40s_linear_infinite] pl-20">
+          <div className="flex gap-6 animate-[marquee-right_40s_linear_infinite] pl-20 text-center">
             {[...integratedTools.slice(10), ...integratedTools.slice(10)].map(
               (tool, index) => {
                 const Icon = tool.icon;
                 return (
                   <div
                     key={index}
-                    className="flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
+                    className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
                   >
                     <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-[#079f6f]" />
