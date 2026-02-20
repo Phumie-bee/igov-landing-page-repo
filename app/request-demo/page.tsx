@@ -17,6 +17,7 @@ import {
   Users,
 } from "lucide-react";
 import DemoImage from "@/public/demo_image.png";
+import { submitDemoRequest } from "@/lib/actions";
 
 const demoTypes = [
   { label: "Virtual Meeting", value: "virtual" },
@@ -42,9 +43,22 @@ export default function RequestDemoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const result = await submitDemoRequest({
+      name,
+      email,
+      organization,
+      demoType,
+      message: message || undefined,
+    });
+
     setLoading(false);
-    setSubmitted(true);
+
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      alert(result.error || "Something went wrong.");
+    }
   };
 
   // ── Success screen ──
@@ -267,147 +281,109 @@ export default function RequestDemoPage() {
 
             <div className="rounded-2xl border border-zinc-200/80 bg-white shadow-lg">
               <div className="p-8 md:p-10">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name */}
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Full Name */}
                   <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-semibold text-zinc-700 mb-2"
-                    >
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
                       Full Name
                     </label>
                     <input
-                      id="name"
                       type="text"
-                      required
+                      placeholder="John Doe"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="John Doe"
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-all focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20 focus:bg-white"
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-semibold text-zinc-700 mb-2"
-                    >
-                      Email Address
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
+                      Email
                     </label>
                     <input
-                      id="email"
                       type="email"
-                      required
+                      placeholder="you@organization.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@organization.gov"
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-all focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20 focus:bg-white"
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all"
                     />
                   </div>
 
                   {/* Organization */}
                   <div>
-                    <label
-                      htmlFor="organization"
-                      className="block text-sm font-semibold text-zinc-700 mb-2"
-                    >
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
                       Organization
                     </label>
                     <input
-                      id="organization"
                       type="text"
-                      required
+                      placeholder="Your organization name"
                       value={organization}
                       onChange={(e) => setOrganization(e.target.value)}
-                      placeholder="Ministry of Digital Economy"
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-all focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20 focus:bg-white"
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all"
                     />
                   </div>
 
                   {/* Demo Type */}
                   <div>
-                    <label className="block text-sm font-semibold text-zinc-700 mb-3">
-                      Demo Format
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
+                      Demo Type
                     </label>
-                    <div className="grid grid-cols-2 gap-4">
-                      {demoTypes.map((dt) => {
-                        const selected = demoType === dt.value;
-                        const Icon = dt.value === "virtual" ? Monitor : Users;
-                        return (
-                          <button
-                            key={dt.value}
-                            type="button"
-                            onClick={() => setDemoType(dt.value)}
-                            className={`flex items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-sm font-medium transition-all ${
-                              selected
-                                ? "border-[#079f6f] bg-[#079f6f]/5 text-[#079f6f]"
-                                : "border-zinc-200 text-zinc-500 hover:border-zinc-300"
-                            }`}
-                          >
-                            <Icon className="w-5 h-5 shrink-0" />
-                            {dt.label}
-                          </button>
-                        );
-                      })}
+                    <div className="grid grid-cols-2 gap-3">
+                      {demoTypes.map((dt) => (
+                        <button
+                          type="button"
+                          key={dt.value}
+                          onClick={() => setDemoType(dt.value)}
+                          className={`flex items-center justify-center gap-2 h-12 rounded-xl border text-sm font-medium transition-all ${
+                            demoType === dt.value
+                              ? "border-[#079f6f] bg-[#079f6f]/5 text-[#056b4a] ring-2 ring-[#079f6f]/30"
+                              : "border-zinc-200 bg-zinc-50/60 text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50"
+                          }`}
+                        >
+                          {dt.value === "virtual" ? (
+                            <Monitor className="w-4 h-4" />
+                          ) : (
+                            <Users className="w-4 h-4" />
+                          )}
+                          {dt.label}
+                        </button>
+                      ))}
                     </div>
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-semibold text-zinc-700 mb-2"
-                    >
-                      Additional Notes{" "}
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
+                      Additional Message{" "}
                       <span className="text-zinc-400 font-normal">
                         (optional)
                       </span>
                     </label>
                     <textarea
-                      id="message"
+                      placeholder="Anything specific you'd like us to cover?"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       rows={4}
-                      placeholder="Any specific areas you'd like us to cover?"
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-all focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20 focus:bg-white resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all resize-none"
                     />
                   </div>
 
                   {/* Submit */}
                   <Button
                     type="submit"
-                    size="lg"
                     disabled={loading || !demoType}
-                    className="w-full bg-[#079f6f] text-white hover:bg-[#028751] text-base font-semibold h-13 rounded-xl group disabled:opacity-60"
+                    className="w-full bg-[#079f6f] text-white hover:bg-[#028751] font-semibold h-12 rounded-xl text-sm group disabled:opacity-50 disabled:cursor-not-allowed mt-2"
                   >
                     {loading ? (
-                      <span className="flex items-center gap-2">
-                        <svg
-                          className="animate-spin h-5 w-5"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                          />
-                        </svg>
-                        Submitting...
-                      </span>
+                      "Submitting..."
                     ) : (
                       <>
                         Schedule Demo
-                        <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <Send className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                       </>
                     )}
                   </Button>

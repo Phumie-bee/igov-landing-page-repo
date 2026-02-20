@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Send, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { submitContactForm } from "@/lib/actions";
 
 const contactReasons = [
   "Request a Demo",
@@ -26,11 +27,15 @@ export default function GetStartedPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const result = await submitContactForm({ email, reason, details });
 
     setLoading(false);
-    setSubmitted(true);
+
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      alert(result.error || "Something went wrong.");
+    }
   };
 
   if (submitted) {
