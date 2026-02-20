@@ -211,6 +211,15 @@
   animation-delay: 2000ms;
 }
 
+/* Hide scrollbar for horizontal scroll rows */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes marquee-left {
   0% {
     transform: translateX(0);
@@ -226,5 +235,15 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes nudge-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
   }
 }
