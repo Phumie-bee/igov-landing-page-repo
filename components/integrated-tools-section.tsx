@@ -174,7 +174,7 @@ export default function IntegratedToolsSection() {
                 return (
                   <div
                     key={index}
-                    className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
+                    className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow items-center justify-center"
                   >
                     <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-[#079f6f]" />
