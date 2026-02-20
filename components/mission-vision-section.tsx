@@ -15,7 +15,7 @@ import {
 
 export default function MissionVisionSection() {
   return (
-    <section className="py-20 md:py-28 px-6 bg-zinc-50">
+    <section id="about" className="py-20 md:py-28 px-6 bg-zinc-50">
       <div className="mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

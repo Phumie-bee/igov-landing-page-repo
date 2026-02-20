@@ -8,9 +8,9 @@ import Image from "next/image";
 import iGov_logo from "../public/iGov_logo.jpeg";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Why CNXiGov", href: "#why-cnxigov" },
+  { label: "Platform Tools", href: "#tools" },
+  { label: "Services", href: "#features" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
