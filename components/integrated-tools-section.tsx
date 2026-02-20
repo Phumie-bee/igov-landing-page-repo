@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   Mail,
   Building2,
@@ -18,13 +19,13 @@ import {
   Key,
   PenTool,
   GraduationCap,
-  DollarSign,
   FileText,
   Database,
   ChevronRight,
 } from "lucide-react";
 
-const integratedTools = [
+const naira = "₦";
+const integratedTools: { icon: LucideIcon | string; name: string }[] = [
   { icon: Mail, name: "e-Messaging" },
   { icon: Building2, name: "e-Office" },
   { icon: Workflow, name: "Workflows" },
@@ -41,7 +42,7 @@ const integratedTools = [
   { icon: Key, name: "e-Token" },
   { icon: PenTool, name: "e-Signature" },
   { icon: GraduationCap, name: "Trainings" },
-  { icon: DollarSign, name: "Budgeting" },
+  { icon: "₦", name: "Budgeting" },
   { icon: FileText, name: "Documentation" },
   { icon: Database, name: "Repository" },
 ];
@@ -89,7 +90,13 @@ function ScrollableRow({ row }: { row: typeof integratedTools }) {
               className="flex items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-white rounded-full border border-zinc-200 shadow-sm min-w-40 sm:min-w-47.5 shrink-0 snap-start hover:shadow-md transition-shadow"
             >
               <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#079f6f]/10 rounded-lg flex items-center justify-center shrink-0">
-                <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#079f6f]" />
+                {typeof Icon === "string" ? (
+                  <span className="text-base sm:text-lg font-bold text-[#079f6f]">
+                    {Icon}
+                  </span>
+                ) : (
+                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#079f6f]" />
+                )}
               </div>
               <span className="text-xs sm:text-sm font-semibold text-zinc-800 whitespace-nowrap">
                 {tool.name}
@@ -154,7 +161,13 @@ export default function IntegratedToolsSection() {
                   className="flex items-center justify-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow"
                 >
                   <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-[#079f6f]" />
+                    {typeof Icon === "string" ? (
+                      <span className="text-lg font-bold text-[#079f6f]">
+                        {Icon}
+                      </span>
+                    ) : (
+                      <Icon className="w-5 h-5 text-[#079f6f]" />
+                    )}
                   </div>
                   <span className="text-sm font-semibold text-zinc-800 whitespace-nowrap">
                     {tool.name}
@@ -177,7 +190,13 @@ export default function IntegratedToolsSection() {
                     className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border border-zinc-200 shadow-sm min-w-60 shrink-0 hover:shadow-md transition-shadow items-center justify-center"
                   >
                     <div className="w-10 h-10 bg-[#079f6f]/10 rounded-xl flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-[#079f6f]" />
+                      {typeof Icon === "string" ? (
+                        <span className="text-lg font-bold text-[#079f6f]">
+                          {Icon}
+                        </span>
+                      ) : (
+                        <Icon className="w-5 h-5 text-[#079f6f]" />
+                      )}
                     </div>
                     <span className="text-sm font-semibold text-zinc-800 whitespace-nowrap">
                       {tool.name}
