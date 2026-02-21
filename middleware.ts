@@ -5,12 +5,18 @@ export function middleware(request: NextRequest) {
     const authHeader = request.headers.get("authorization");
 
     if (authHeader) {
-      const encoded = authHeader.split(" ")[1];
-      const decoded = atob(encoded);
-      const [user, password] = decoded.split(":");
+      try {
+        const encoded = authHeader.split(" ")[1];
+        const decoded = Buffer.from(encoded, "base64").toString("utf-8");
+        const separatorIndex = decoded.indexOf(":");
+        const user = decoded.slice(0, separatorIndex);
+        const password = decoded.slice(separatorIndex + 1);
 
-      if (user === "admin" && password === process.env.ADMIN_PASSWORD) {
-        return NextResponse.next();
+        if (user === "admin" && password === process.env.ADMIN_PASSWORD) {
+          return NextResponse.next();
+        }
+      } catch {
+        // Invalid auth header, fall through to 401
       }
     }
 
