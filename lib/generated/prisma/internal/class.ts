@@ -34,10 +34,6 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
-      },
-      {
-        "fromEnvVar": null,
-        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -60,8 +56,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider      = \"prisma-client\"\n  output        = \"../lib/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel DemoRequest {\n  id           String   @id @default(cuid())\n  name         String\n  email        String\n  organization String\n  demoType     String\n  message      String?  @db.Text\n  createdAt    DateTime @default(now())\n}\n\nmodel ContactSubmission {\n  id        String   @id @default(cuid())\n  email     String\n  reason    String\n  details   String   @db.Text\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "09abe593d1584f51345f06fca5f51ab70dfa8bd3ec8dca5b454a84a1e0a15ed4",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../lib/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel DemoRequest {\n  id           String   @id @default(cuid())\n  name         String\n  email        String\n  organization String\n  demoType     String\n  message      String?  @db.Text\n  createdAt    DateTime @default(now())\n}\n\nmodel ContactSubmission {\n  id        String   @id @default(cuid())\n  email     String\n  reason    String\n  details   String   @db.Text\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "b01027d544f30e7afc8f8fe0b93a0dceb8625f704aafe015c32958c3aae0be47",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
