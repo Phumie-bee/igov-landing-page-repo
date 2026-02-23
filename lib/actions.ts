@@ -24,8 +24,9 @@ export async function submitContactForm(formData: {
     console.log("Contact submission created:", result);
     return { success: true };
   } catch (error) {
-    console.error("Contact submission failed:", error);
-    return { success: false, error: "Something went wrong. Please try again." };
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Contact submission failed:", message, error);
+    return { success: false, error: `Something went wrong: ${message}` };
   }
 }
 
@@ -60,8 +61,9 @@ export async function submitDemoRequest(formData: {
     console.log("Demo request created:", result);
     return { success: true };
   } catch (error) {
-    console.error("Demo request failed:", error);
-    return { success: false, error: "Something went wrong. Please try again." };
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Demo request failed:", message, error);
+    return { success: false, error: `Something went wrong: ${message}` };
   }
 }
 
