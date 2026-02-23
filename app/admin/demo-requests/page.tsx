@@ -2,6 +2,8 @@ import { getDemoRequests } from "@/lib/actions";
 import Link from "next/link";
 import { ArrowLeft, CalendarCheck, Monitor, Users } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDemoRequestsPage() {
   const result = await getDemoRequests();
   const requests = result.data ?? [];

@@ -2,6 +2,8 @@ import { getContactSubmissions } from "@/lib/actions";
 import Link from "next/link";
 import { ArrowLeft, MessageSquare } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminContactSubmissionsPage() {
   const result = await getContactSubmissions();
   const submissions = result.data ?? [];
