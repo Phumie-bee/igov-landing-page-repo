@@ -24,7 +24,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const naira = "₦";
 const integratedTools: { icon: LucideIcon | string; name: string }[] = [
   { icon: Mail, name: "e-Messaging" },
   { icon: Building2, name: "e-Office" },

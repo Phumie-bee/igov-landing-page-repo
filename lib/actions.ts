@@ -7,8 +7,6 @@ export async function submitContactForm(formData: {
   reason: string;
   details: string;
 }) {
-  console.log("submitContactForm called with:", formData);
-
   if (!formData.email || !formData.reason || !formData.details) {
     return { success: false, error: "All fields are required." };
   }
@@ -21,7 +19,6 @@ export async function submitContactForm(formData: {
         details: formData.details,
       },
     });
-    console.log("Contact submission created:", result);
     return { success: true };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -37,8 +34,6 @@ export async function submitDemoRequest(formData: {
   demoType: string;
   message?: string;
 }) {
-  console.log("submitDemoRequest called with:", formData);
-
   if (
     !formData.name ||
     !formData.email ||
@@ -58,7 +53,6 @@ export async function submitDemoRequest(formData: {
         message: formData.message || null,
       },
     });
-    console.log("Demo request created:", result);
     return { success: true };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -67,34 +61,89 @@ export async function submitDemoRequest(formData: {
   }
 }
 
-export async function getDemoRequests() {
+const PAGE_SIZE = 10;
+
+export async function getDemoRequests(page = 1, search = "") {
   try {
-    const requests = await prisma.demoRequest.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-    return { success: true, data: requests };
+    const where = search
+      ? {
+          OR: [
+            { name: { contains: search } },
+            { email: { contains: search } },
+            { organization: { contains: search } },
+            { message: { contains: search } },
+          ],
+        }
+      : {};
+
+    const [requests, total] = await Promise.all([
+      prisma.demoRequest.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip: (page - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+      }),
+      prisma.demoRequest.count({ where }),
+    ]);
+
+    return {
+      success: true,
+      data: requests,
+      total,
+      page,
+      totalPages: Math.ceil(total / PAGE_SIZE),
+    };
   } catch (error) {
     console.error("Failed to fetch demo requests:", error);
     return {
       success: false,
       error: "Failed to fetch demo requests.",
       data: [],
+      total: 0,
+      page: 1,
+      totalPages: 1,
     };
   }
 }
 
-export async function getContactSubmissions() {
+export async function getContactSubmissions(page = 1, search = "") {
   try {
-    const submissions = await prisma.contactSubmission.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-    return { success: true, data: submissions };
+    const where = search
+      ? {
+          OR: [
+            { email: { contains: search } },
+            { reason: { contains: search } },
+            { details: { contains: search } },
+          ],
+        }
+      : {};
+
+    const [submissions, total] = await Promise.all([
+      prisma.contactSubmission.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip: (page - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+      }),
+      prisma.contactSubmission.count({ where }),
+    ]);
+
+    return {
+      success: true,
+      data: submissions,
+      total,
+      page,
+      totalPages: Math.ceil(total / PAGE_SIZE),
+    };
   } catch (error) {
     console.error("Failed to fetch contact submissions:", error);
     return {
       success: false,
       error: "Failed to fetch contact submissions.",
       data: [],
+      total: 0,
+      page: 1,
+      totalPages: 1,
     };
   }
 }
