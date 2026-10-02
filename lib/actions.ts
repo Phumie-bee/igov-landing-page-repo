@@ -2,19 +2,32 @@
 
 import { prisma } from "./db";
 
+const PHONE_PATTERN = /^\d{11}$/;
+
 export async function submitContactForm(formData: {
   email: string;
+  phone: string;
   reason: string;
   details: string;
 }) {
-  if (!formData.email || !formData.reason || !formData.details) {
+  if (
+    !formData.email ||
+    !formData.phone?.trim() ||
+    !formData.reason ||
+    !formData.details
+  ) {
     return { success: false, error: "All fields are required." };
+  }
+
+  if (!PHONE_PATTERN.test(formData.phone.trim())) {
+    return { success: false, error: "Phone number must be 11 digits." };
   }
 
   try {
     const result = await prisma.contactSubmission.create({
       data: {
         email: formData.email,
+        phone: formData.phone.trim(),
         reason: formData.reason,
         details: formData.details,
       },
@@ -30,6 +43,7 @@ export async function submitContactForm(formData: {
 export async function submitDemoRequest(formData: {
   name: string;
   email: string;
+  phone: string;
   organization: string;
   demoType: string;
   message?: string;
@@ -37,10 +51,15 @@ export async function submitDemoRequest(formData: {
   if (
     !formData.name ||
     !formData.email ||
+    !formData.phone?.trim() ||
     !formData.organization ||
     !formData.demoType
   ) {
     return { success: false, error: "All required fields must be filled." };
+  }
+
+  if (!PHONE_PATTERN.test(formData.phone.trim())) {
+    return { success: false, error: "Phone number must be 11 digits." };
   }
 
   try {
@@ -48,6 +67,7 @@ export async function submitDemoRequest(formData: {
       data: {
         name: formData.name,
         email: formData.email,
+        phone: formData.phone.trim(),
         organization: formData.organization,
         demoType: formData.demoType,
         message: formData.message || null,
@@ -70,6 +90,7 @@ export async function getDemoRequests(page = 1, search = "") {
           OR: [
             { name: { contains: search } },
             { email: { contains: search } },
+            { phone: { contains: search } },
             { organization: { contains: search } },
             { message: { contains: search } },
           ],
@@ -112,6 +133,7 @@ export async function getContactSubmissions(page = 1, search = "") {
       ? {
           OR: [
             { email: { contains: search } },
+            { phone: { contains: search } },
             { reason: { contains: search } },
             { details: { contains: search } },
           ],

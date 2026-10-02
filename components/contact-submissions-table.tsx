@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { X, Mail, Clock, Tag, FileText } from "lucide-react";
+import { X, Mail, Phone, Clock, Tag, FileText } from "lucide-react";
 
 interface Submission {
   id: string;
   email: string;
+  phone: string | null;
   reason: string;
   details: string;
   createdAt: string | Date;
@@ -34,6 +35,9 @@ export default function ContactSubmissionsTable({
                   Email
                 </th>
                 <th className="text-left px-6 py-4 font-semibold text-zinc-600">
+                  Phone
+                </th>
+                <th className="text-left px-6 py-4 font-semibold text-zinc-600">
                   Reason
                 </th>
                 <th className="text-left px-6 py-4 font-semibold text-zinc-600">
@@ -57,6 +61,9 @@ export default function ContactSubmissionsTable({
                     {pageOffset + i + 1}
                   </td>
                   <td className="px-6 py-4 text-zinc-600">{sub.email}</td>
+                  <td className="px-6 py-4 text-zinc-600 whitespace-nowrap">
+                    {sub.phone || "—"}
+                  </td>
                   <td className="px-6 py-4">
                     <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">
                       {sub.reason}
@@ -122,6 +129,25 @@ export default function ContactSubmissionsTable({
                   </a>
                 </div>
               </div>
+
+              {selected.phone && (
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4 text-teal-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1">
+                      Phone
+                    </p>
+                    <a
+                      href={`tel:${selected.phone}`}
+                      className="text-sm text-zinc-800 hover:text-[#079f6f] underline decoration-zinc-300 hover:decoration-[#079f6f] transition-colors"
+                    >
+                      {selected.phone}
+                    </a>
+                  </div>
+                </div>
+              )}
 
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">

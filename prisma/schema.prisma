@@ -14,6 +14,7 @@ model DemoRequest {
   id           String   @id @default(cuid())
   name         String
   email        String
+  phone        String?
   organization String
   demoType     String
   message      String?
@@ -23,6 +24,7 @@ model DemoRequest {
 model ContactSubmission {
   id        String   @id @default(cuid())
   email     String
+  phone     String?
   reason    String
   details   String
   createdAt DateTime @default(now())

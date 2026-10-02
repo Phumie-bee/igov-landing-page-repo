@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   X,
   Mail,
+  Phone,
   Clock,
   User,
   Building2,
@@ -16,6 +17,7 @@ interface DemoRequest {
   id: string;
   name: string;
   email: string;
+  phone: string | null;
   organization: string;
   demoType: string;
   message: string | null;
@@ -48,6 +50,9 @@ export default function DemoRequestsTable({
                   Email
                 </th>
                 <th className="text-left px-6 py-4 font-semibold text-zinc-600">
+                  Phone
+                </th>
+                <th className="text-left px-6 py-4 font-semibold text-zinc-600">
                   Organization
                 </th>
                 <th className="text-left px-6 py-4 font-semibold text-zinc-600">
@@ -77,6 +82,9 @@ export default function DemoRequestsTable({
                     {req.name}
                   </td>
                   <td className="px-6 py-4 text-zinc-600">{req.email}</td>
+                  <td className="px-6 py-4 text-zinc-600 whitespace-nowrap">
+                    {req.phone || "—"}
+                  </td>
                   <td className="px-6 py-4 text-zinc-600 whitespace-nowrap">
                     {req.organization}
                   </td>
@@ -170,6 +178,25 @@ export default function DemoRequestsTable({
                   </a>
                 </div>
               </div>
+
+              {selected.phone && (
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4 text-teal-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1">
+                      Phone
+                    </p>
+                    <a
+                      href={`tel:${selected.phone}`}
+                      className="text-sm text-zinc-800 hover:text-[#079f6f] underline decoration-zinc-300 hover:decoration-[#079f6f] transition-colors"
+                    >
+                      {selected.phone}
+                    </a>
+                  </div>
+                </div>
+              )}
 
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-lg bg-violet-50 flex items-center justify-center shrink-0 mt-0.5">

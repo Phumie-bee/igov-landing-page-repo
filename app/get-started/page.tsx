@@ -18,6 +18,7 @@ const contactReasons = [
 
 export default function GetStartedPage() {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [reason, setReason] = useState("");
   const [details, setDetails] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -27,7 +28,12 @@ export default function GetStartedPage() {
     e.preventDefault();
     setLoading(true);
 
-    const result = await submitContactForm({ email, reason, details });
+    const result = await submitContactForm({
+      email,
+      phone,
+      reason,
+      details,
+    });
 
     setLoading(false);
 
@@ -104,6 +110,32 @@ export default function GetStartedPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@organization.gov"
+                  className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-colors focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-semibold text-zinc-800 mb-2"
+                >
+                  Phone Number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  inputMode="numeric"
+                  autoComplete="tel"
+                  pattern="[0-9]{11}"
+                  maxLength={11}
+                  title="Phone number must be 11 digits"
+                  required
+                  value={phone}
+                  onChange={(e) =>
+                    setPhone(e.target.value.replace(/\D/g, ""))
+                  }
+                  placeholder="08012345678"
                   className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-colors focus:border-[#079f6f] focus:ring-2 focus:ring-[#079f6f]/20"
                 />
               </div>

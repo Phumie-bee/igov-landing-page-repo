@@ -33,6 +33,7 @@ const scheduleBenefits = [
 export default function RequestDemoPage() {
   const [view, setView] = useState<"choose" | "video" | "schedule">("choose");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [organization, setOrganization] = useState("");
   const [demoType, setDemoType] = useState("");
@@ -47,6 +48,7 @@ export default function RequestDemoPage() {
     const result = await submitDemoRequest({
       name,
       email,
+      phone,
       organization,
       demoType,
       message: message || undefined,
@@ -307,6 +309,28 @@ export default function RequestDemoPage() {
                       placeholder="you@organization.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-sm font-medium text-zinc-700 mb-1.5">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      inputMode="numeric"
+                      autoComplete="tel"
+                      pattern="[0-9]{11}"
+                      maxLength={11}
+                      title="Phone number must be 11 digits"
+                      placeholder="08012345678"
+                      value={phone}
+                      onChange={(e) =>
+                        setPhone(e.target.value.replace(/\D/g, ""))
+                      }
                       required
                       className="w-full h-12 px-4 rounded-xl border border-zinc-200 bg-zinc-50/60 text-zinc-900 placeholder:text-zinc-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#079f6f]/40 focus:border-[#079f6f] transition-all"
                     />
